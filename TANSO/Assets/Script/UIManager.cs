@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,7 +8,7 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance;
 
     public Button confirmButton;
-    public Text editModeText;
+    public TMP_Text editModeText;
 
     private bool isEditing = false;
     private GridManager gridManager;
@@ -31,7 +32,10 @@ public class UIManager : MonoBehaviour
     {
         isEditing = true;
         confirmButton.gameObject.SetActive(true);
-        editModeText.text = "나무 편집 중 (좌클릭: 추가, 우클릭: 제거)";
+        editModeText.text = "Editting Tree";
+        editModeText.fontSize = 20;
+        editModeText.outlineWidth = 0.2f;
+        editModeText.outlineColor = Color.black;
 
         while (isEditing)
         {
