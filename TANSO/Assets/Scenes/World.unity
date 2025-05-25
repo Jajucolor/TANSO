@@ -1068,6 +1068,7 @@ GameObject:
   - component: {fileID: 980312199}
   - component: {fileID: 980312198}
   - component: {fileID: 980312197}
+  - component: {fileID: 980312202}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1136,6 +1137,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: 256
   height: 256
+  pollutionPrefab: {fileID: 915708063443675875}
+  treePrefab: {fileID: 9032837746489658520}
+  animalPrefab: {fileID: 230776892073485757}
 --- !u!224 &980312201
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1155,6 +1159,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0.20056409, y: 5.0425167}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &980312202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 980312196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e6a1eceb08cc8444a73891769b1e587, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gridManager: {fileID: 0}
+  pollutionSpreadRate: 1
+  currentTurn: 0
+  maxTurns: 100
+  pollutionText: {fileID: 0}
+  biodiversityText: {fileID: 0}
+  fireEffect: {fileID: 2042343940}
 --- !u!1 &1771831868
 GameObject:
   m_ObjectHideFlags: 0
