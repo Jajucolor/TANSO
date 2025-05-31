@@ -1,5 +1,7 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GridManager : MonoBehaviour
 {
@@ -168,4 +170,7 @@ public class GridManager : MonoBehaviour
         return x >= 0 && y >= 0 && x < width && y < height;
     }
 
+    
 }
+
+
