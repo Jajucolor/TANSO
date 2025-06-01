@@ -1,4 +1,6 @@
+using System.Drawing;
 using UnityEngine;
+
 
 public class Tree : Entity
 {
@@ -6,7 +8,22 @@ public class Tree : Entity
 
     private void Start()
     {
+        if (ResourceManager.Instance.CanAffordTree())
+        {
+            ResourceManager.Instance.PlantTree();
+        }
+        else
+        {
+            Destroy(gameObject); // Not enough credits
+        }
+
         size = 2;
+    }
+
+    public void OnTurnEnd()
+    {
+        ResourceManager.Instance.MaintainTree();
+        ResourceManager.Instance.AdjustBiodiversity(0.01f);
     }
 
     public override void OnTurnPassed()
@@ -14,3 +31,4 @@ public class Tree : Entity
         StatsTracker.Instance.ReduceCarbon(carbonAbsorption);
     }
 }
+

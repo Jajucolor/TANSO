@@ -17,7 +17,11 @@ public class SimulationManager : MonoBehaviour
 
     private int currentTurn = 0;
     private GridManager gridManager;
+    private ResourceManager manager;
+    private Tree tree;
+    private Factory factory;
     private bool isSimulating = false;
+    public int treeAmount;
 
     private List<Entity> entities = new List<Entity>();
 
@@ -29,6 +33,9 @@ public class SimulationManager : MonoBehaviour
     void Start()
     {
         gridManager = FindObjectOfType<GridManager>();
+        tree = FindObjectOfType<Tree>();   
+        factory = FindObjectOfType<Factory>();
+        manager = FindObjectOfType<ResourceManager>();
         InitializeEntities();
         StartCoroutine(RunSimulation());
     }
@@ -36,7 +43,7 @@ public class SimulationManager : MonoBehaviour
     void InitializeEntities()
     {
         // 나무 100그루 초기 배치
-        for (int i = 0; i < 400; i++)
+        for (int i = 0; i < treeAmount * 4; i++)
             TryPlaceEntity(treePrefab, 2);
 
         // 동물 50마리 초기 배치
@@ -68,7 +75,7 @@ public class SimulationManager : MonoBehaviour
             currentTurn++;
             Debug.Log($"Turn {currentTurn} 시작 (Year {currentTurn * 3})");
 
-            SimulateTurn();
+            factory.OnTurnStart();
 
             // 사용자 나무 편집 (스킵하려면 비활성화)
             yield return StartCoroutine(UIManager.Instance.HandleTreeEditing());
@@ -87,6 +94,7 @@ public class SimulationManager : MonoBehaviour
 
         isSimulating = false;
         Debug.Log("시뮬레이션 종료");
+        tree.OnTurnEnd();
     }
 
     void UpdateEntityList()
@@ -124,70 +132,70 @@ public class SimulationManager : MonoBehaviour
         }
     }
 
-    public int pollutionSpreadRate = 1; // every X turns
-    public int maxTurns = 300;
-    public Text pollutionText;
-    public Text biodiversityText;
-    public GameObject fireEffect;
+    //public int pollutionSpreadRate = 1; // every X turns
+    //public int maxTurns = 300;
+    //public Text pollutionText;
+    //public Text biodiversityText;
+    //public GameObject fireEffect;
 
-    private int pollutionLevel = 0;
-    private int biodiversityScore = 100;
-    private bool disasterActive = false;
+    //private int pollutionLevel = 0;
+    //private int biodiversityScore = 100;
+    //private bool disasterActive = false;
 
-    public void SimulateTurn()
-    {
-        RandomDisaster();
-        UpdateBiodiversity();
-        UpdateUI();
+    //public void SimulateTurn()
+    //{
+    //    RandomDisaster();
+    //    UpdateBiodiversity();
+    //    UpdateUI();
 
-        if (currentTurn >= maxTurns)
-        {
-            EndSimulation();
-        }
-    }
+    //    if (currentTurn >= maxTurns)
+    //    {
+    //        EndSimulation();
+    //    }
+    //}
 
-    void RandomDisaster()
-    {
-        if (Random.value < 10f && !disasterActive) // 10% chance
-        {
-            disasterActive = true;
-            StartCoroutine(TriggerForestFire());
-        }
-    }
+    //void RandomDisaster()
+    //{
+    //    if (Random.value < 10f && !disasterActive) // 10% chance
+    //    {
+    //        disasterActive = true;
+    //        StartCoroutine(TriggerForestFire());
+    //    }
+    //}
 
-    IEnumerator TriggerForestFire()
-    {
-        Debug.Log("Forest fire triggered!");
-        Vector2Int pos = gridManager.GetRandomTreePosition();
-        Debug.Log(gridManager.GetRandomTreePosition());
-        if (pos != Vector2Int.zero)
-        {
-            TryPlaceEntity(cellPrefab, 10);
-            gridManager.DestroyTreesInRadius(pos, 2);
-            pollutionLevel += 20;
-        }
-        yield return new WaitForSeconds(3f);
-        disasterActive = false;
-    }
+    //IEnumerator TriggerForestFire()
+    //{
+    //    Debug.Log("Forest fire triggered!");
+    //    Vector2Int pos = gridManager.GetRandomTreePosition();
+    //    Debug.Log(gridManager.GetRandomTreePosition());
+    //    if (pos != Vector2Int.zero)
+    //    {
+    //        TryPlaceEntity(cellPrefab, 10);
+    //        gridManager.DestroyTreesInRadius(pos, 2);
+    //        pollutionLevel += 20;
+    //    }
+    //    yield return new WaitForSeconds(3f);
+    //    disasterActive = false;
+    //}
 
-    void UpdateBiodiversity()
-    {
-        int treeCount = gridManager.GetTreeCount();
-        int animalCount = gridManager.GetAnimalCount();
+    //void UpdateBiodiversity()
+    //{
+    //    int treeCount = gridManager.GetTreeCount();
+    //    int animalCount = gridManager.GetAnimalCount();
 
-        biodiversityScore = Mathf.Clamp(treeCount + animalCount - pollutionLevel, 0, 100);
-    }
+    //    biodiversityScore = Mathf.Clamp(treeCount + animalCount - pollutionLevel, 0, 100);
+    //}
 
-    void UpdateUI()
-    {
-        if (pollutionText != null) pollutionText.text = "Pollution: " + pollutionLevel;
-        if (biodiversityText != null) biodiversityText.text = "Biodiversity: " + biodiversityScore;
-    }
+    //void UpdateUI()
+    //{
+    //    if (pollutionText != null) pollutionText.text = "Pollution: " + pollutionLevel;
+    //    if (biodiversityText != null) biodiversityText.text = "Biodiversity: " + biodiversityScore;
+    //}
 
-    void EndSimulation()
-    {
-        Debug.Log("Simulation ended. Final Biodiversity Score: " + biodiversityScore);
-        // Add win/loss condition here
-    }
+    //void EndSimulation()
+    //{
+    //    Debug.Log("Simulation ended. Final Biodiversity Score: " + biodiversityScore);
+    //    // Add win/loss condition here
+    //}
 
 }

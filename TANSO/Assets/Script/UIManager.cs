@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
@@ -13,6 +14,10 @@ public class UIManager : MonoBehaviour
     private bool isEditing = false;
     private GridManager gridManager;
     private GameObject treePrefab;
+
+    public TextMeshProUGUI carbonText;
+    public TextMeshProUGUI energyText;
+    public TextMeshProUGUI biodiversityText;
 
     private void Awake()
     {
@@ -26,6 +31,12 @@ public class UIManager : MonoBehaviour
 
         confirmButton.onClick.AddListener(ConfirmEdit);
         confirmButton.gameObject.SetActive(false);
+    }
+    void Update()
+    {
+        carbonText.text = "Carbon Credits: " + ResourceManager.Instance.carbonCredits;
+        energyText.text = "Energy: " + ResourceManager.Instance.energy;
+        biodiversityText.text = "Biodiversity: " + (ResourceManager.Instance.biodiversity * 100f).ToString("F0") + "%";
     }
 
     public IEnumerator HandleTreeEditing()
@@ -75,4 +86,7 @@ public class UIManager : MonoBehaviour
             }
         }
     }
+
+
+
 }

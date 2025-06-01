@@ -10,10 +10,21 @@ public class Factory : Entity
     {
         size = 4;
     }
+    public void OnTurnStart()
+    {
+        if (ResourceManager.Instance.CanPowerFactory())
+        {
+            ResourceManager.Instance.PowerFactory();
+            ResourceManager.Instance.AdjustBiodiversity(-0.02f);
+        }
+        else
+        {
+            // Factory goes idle
+        }
+    }
 
     public override void OnTurnPassed()
     {
-        StatsTracker.Instance.IncreaseCarbon(carbonEmission);
         KillNearbyAnimals();
         KillNearbyTrees();
     }
