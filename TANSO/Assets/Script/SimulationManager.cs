@@ -20,7 +20,7 @@ public class SimulationManager : MonoBehaviour
     private ResourceManager manager;
     private Tree tree;
     private Factory factory;
-    private bool isSimulating = false;
+    public bool isSimulating = false;
     public int treeAmount;
 
     private List<Entity> entities = new List<Entity>();
@@ -84,17 +84,25 @@ public class SimulationManager : MonoBehaviour
             foreach (Entity e in entities)
                 e.OnTurnPassed();
 
-
+            tree.OnTurnEnd();
 
             StatsTracker.Instance.RecordTurn(currentTurn);
             TrySpawnFactoryRandomly();
 
             yield return new WaitForSeconds(secondsPerTurn);
+
+            if (ResourceManager.Instance.energy <= 0)
+            {
+                isSimulating = false;
+                Debug.Log("½Ã¹Ä·¹ÀÌ¼Ç Á¾·á");
+                Application.Quit();
+            } 
+                
         }
 
         isSimulating = false;
         Debug.Log("½Ã¹Ä·¹ÀÌ¼Ç Á¾·á");
-        tree.OnTurnEnd();
+
     }
 
     void UpdateEntityList()
@@ -108,6 +116,7 @@ public class SimulationManager : MonoBehaviour
         if (Random.value < 0.4f) // 20% È®·ü
         {
             TryPlaceEntity(factoryPrefab, 4);
+            ResourceManager.Instance.factoryAmount++;
         }
     }
 

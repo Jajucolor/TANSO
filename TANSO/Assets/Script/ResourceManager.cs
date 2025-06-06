@@ -8,13 +8,19 @@ public class ResourceManager : MonoBehaviour
 {
     public static ResourceManager Instance;
 
-    public int carbonCredits = 100;
+    public int carbonCredits;
     public int energy = 50;
     public float biodiversity = 1.0f; // 1.0 = balanced, 0 = collapsed
 
     public int treePlantCost = 10;
     public int treeMaintainReward = 2;
     public int factoryEnergyCost = 5;
+    public int treeAmount = 0;
+    public int factoryAmount = 0;
+
+    public int solarPowerGain = 3;
+    public int windPowerGain = 2;
+    public int hydroPowerGain = 4;
 
     void Awake()
     {
@@ -68,4 +74,15 @@ public class ResourceManager : MonoBehaviour
     {
         carbonCredits -= amount;
     }
+
+    public void UseRenewableEnergy(string type)
+    {
+        switch (type)
+        {
+            case "solar": energy += solarPowerGain; break;
+            case "wind": energy += windPowerGain; break;
+            case "hydro": energy += hydroPowerGain; break;
+        }
+    }
+
 }

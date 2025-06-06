@@ -14,8 +14,11 @@ public class Factory : Entity
     {
         if (ResourceManager.Instance.CanPowerFactory())
         {
-            ResourceManager.Instance.PowerFactory();
-            ResourceManager.Instance.AdjustBiodiversity(-0.02f);
+            for (int i = 0; i < ResourceManager.Instance.factoryAmount; i++)
+            {
+                ResourceManager.Instance.PowerFactory();
+                ResourceManager.Instance.AdjustBiodiversity(-0.02f);
+            }
         }
         else
         {

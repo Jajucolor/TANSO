@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Resources;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,6 +10,9 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance;
 
     public Button confirmButton;
+    public Button solarButton;
+    public Button windButton;
+    public Button hydroButton;
     public TMP_Text editModeText;
 
     private bool isEditing = false;
@@ -30,16 +34,26 @@ public class UIManager : MonoBehaviour
         treePrefab = SimulationManager.Instance.treePrefab;
 
         confirmButton.onClick.AddListener(ConfirmEdit);
+        solarButton.onClick.AddListener(OnSolarClick);
+        windButton.onClick.AddListener(OnWindClick);
+        hydroButton.onClick.AddListener(OnHydroClick);
         confirmButton.gameObject.SetActive(false);
+        solarButton.gameObject.SetActive(true);
+        windButton.gameObject.SetActive(true);
+        hydroButton.gameObject.SetActive(true);
     }
     void Update()
     {
         carbonText.text = "Carbon Credits: " + ResourceManager.Instance.carbonCredits;
-        energyText.text = "Energy: " + ResourceManager.Instance.energy;
+        energyText.text = "Sustainable Energy: " + ResourceManager.Instance.energy;
         biodiversityText.text = "Biodiversity: " + (ResourceManager.Instance.biodiversity * 100f).ToString("F0") + "%";
     }
 
-    public IEnumerator HandleTreeEditing()
+    public void OnSolarClick() => FindObjectOfType<SustainableManager>().InvestInRenewable("solar");
+    public void OnWindClick() => FindObjectOfType<SustainableManager>().InvestInRenewable("wind");
+    public void OnHydroClick() => FindObjectOfType<SustainableManager>().InvestInRenewable("hydro");
+
+public IEnumerator HandleTreeEditing()
     {
         isEditing = true;
         confirmButton.gameObject.SetActive(true);
@@ -83,6 +97,12 @@ public class UIManager : MonoBehaviour
             if (col != null && col.GetComponent<Tree>())
             {
                 Destroy(col.gameObject);
+            }
+            else if (col != null && col.GetComponent<Factory>())
+            {
+                Destroy(col.gameObject);
+                ResourceManager.Instance.factoryAmount--;
+                ResourceManager.Instance.carbonCredits = ResourceManager.Instance.carbonCredits - 100;
             }
         }
     }
