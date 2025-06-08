@@ -79,7 +79,7 @@ public class SimulationManager : MonoBehaviour
 
             factory.OnTurnStart();
 
-            graph.UpdateGraph(ResourceManager.Instance.carbonData);
+            //graph.UpdateGraph(ResourceManager.Instance.carbonData);
 
             // 사용자 나무 편집 (스킵하려면 비활성화)
             yield return StartCoroutine(UIManager.Instance.HandleTreeEditing());
@@ -90,7 +90,7 @@ public class SimulationManager : MonoBehaviour
 
             tree.OnTurnEnd();
 
-            StatsTracker.Instance.RecordTurn(currentTurn);
+            //StatsTracker.Instance.RecordTurn(currentTurn);
             TrySpawnFactoryRandomly();
 
             yield return new WaitForSeconds(secondsPerTurn);

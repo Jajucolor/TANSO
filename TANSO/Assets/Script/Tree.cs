@@ -37,7 +37,7 @@ public class Tree : Entity
 
     public override void OnTurnPassed()
     {
-        StatsTracker.Instance.ReduceCarbon(carbonAbsorption);
+        //StatsTracker.Instance.ReduceCarbon(carbonAbsorption);
     }
 }
 
