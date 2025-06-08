@@ -18,6 +18,7 @@ public class ResourceManager : MonoBehaviour
     public int treeAmount = 0;
     public int factoryAmount = 0;
 
+    public List<int> energyData = new List<int>();
     public List<int> carbonData = new List<int>();
 
     public int solarPowerGain = 3;
@@ -56,11 +57,13 @@ public class ResourceManager : MonoBehaviour
     {
         energy -= factoryEnergyCost;
         carbonData.Add(factoryEnergyCost);
+        print(carbonData);
     }
 
     public void GainEnergy(int amount)
     {
         energy += amount;
+
     }
 
     public void AdjustBiodiversity(float amount)
@@ -82,9 +85,18 @@ public class ResourceManager : MonoBehaviour
     {
         switch (type)
         {
-            case "solar": energy += solarPowerGain; break;
-            case "wind": energy += windPowerGain; break;
-            case "hydro": energy += hydroPowerGain; break;
+            case "solar": 
+                energy += solarPowerGain;
+                GainEnergy(solarPowerGain);
+                break;
+            case "wind": 
+                energy += windPowerGain;
+                GainEnergy(windPowerGain);
+                break;
+            case "hydro": 
+                energy += hydroPowerGain;
+                GainEnergy(hydroPowerGain);
+                break;
         }
     }
 
