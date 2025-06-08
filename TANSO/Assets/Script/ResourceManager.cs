@@ -12,18 +12,18 @@ public class ResourceManager : MonoBehaviour
     public int energy = 50;
     public float biodiversity = 1.0f; // 1.0 = balanced, 0 = collapsed
 
-    public int treePlantCost = 10;
-    public int treeMaintainReward = 2;
-    public int factoryEnergyCost = 5;
+    public int treePlantCost = 5;
+    public int treeMaintainReward = 10;
+    public int factoryEnergyCost = 1000;
     public int treeAmount = 0;
     public int factoryAmount = 0;
 
     public List<int> energyData = new List<int>();
     public List<int> carbonData = new List<int>();
 
-    public int solarPowerGain = 3;
-    public int windPowerGain = 2;
-    public int hydroPowerGain = 4;
+    public int solarPowerGain = 2;
+    public int windPowerGain = 4;
+    public int hydroPowerGain = 9;
 
     void Awake()
     {
