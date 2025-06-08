@@ -18,6 +18,7 @@ public class SimulationManager : MonoBehaviour
     private int currentTurn = 0;
     private GridManager gridManager;
     private ResourceManager manager;
+    private Graph graph;
     private Tree tree;
     private Factory factory;
     public bool isSimulating = false;
@@ -36,6 +37,7 @@ public class SimulationManager : MonoBehaviour
         tree = FindObjectOfType<Tree>();   
         factory = FindObjectOfType<Factory>();
         manager = FindObjectOfType<ResourceManager>();
+        graph = FindObjectOfType<Graph>();
         InitializeEntities();
         StartCoroutine(RunSimulation());
     }
@@ -76,6 +78,8 @@ public class SimulationManager : MonoBehaviour
             Debug.Log($"Turn {currentTurn} 시작 (Year {currentTurn * 3})");
 
             factory.OnTurnStart();
+
+            graph.UpdateGraph(ResourceManager.Instance.carbonData);
 
             // 사용자 나무 편집 (스킵하려면 비활성화)
             yield return StartCoroutine(UIManager.Instance.HandleTreeEditing());

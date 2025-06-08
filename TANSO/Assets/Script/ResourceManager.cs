@@ -18,6 +18,8 @@ public class ResourceManager : MonoBehaviour
     public int treeAmount = 0;
     public int factoryAmount = 0;
 
+    public List<int> carbonData = new List<int>();
+
     public int solarPowerGain = 3;
     public int windPowerGain = 2;
     public int hydroPowerGain = 4;
@@ -53,6 +55,7 @@ public class ResourceManager : MonoBehaviour
     public void PowerFactory()
     {
         energy -= factoryEnergyCost;
+        carbonData.Add(factoryEnergyCost);
     }
 
     public void GainEnergy(int amount)
