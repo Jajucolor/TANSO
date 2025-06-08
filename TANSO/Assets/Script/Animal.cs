@@ -2,15 +2,9 @@ using UnityEngine;
 
 public class Animal : Entity
 {
-    private void Start()
-    {
-        size = 1;
-    }
+    private void Start() => size = 1;
 
-    public override void OnTurnPassed()
-    {
-        TryReproduceNearTrees();
-    }
+    public override void OnTurnPassed() => TryReproduceNearTrees();
 
     void TryReproduceNearTrees()
     {

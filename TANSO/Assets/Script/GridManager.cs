@@ -60,10 +60,7 @@ public class GridManager : MonoBehaviour
         }
     }
 
-    public void ClearAll()
-    {
-        occupied = new bool[width, height];
-    }
+    public void ClearAll() => occupied = new bool[width, height];
 
     public void SpreadPollution()
     {
@@ -158,14 +155,8 @@ public class GridManager : MonoBehaviour
         return count;
     }
 
-    public Vector3 GetWorldPosition(Vector2Int gridPos)
-    {
-        return new Vector3(gridPos.x, 0, gridPos.y); // Assumes flat grid
-    }
+    public Vector3 GetWorldPosition(Vector2Int gridPos) => new Vector3(gridPos.x, 0, gridPos.y); // Assumes flat grid
 
-    public bool IsValidCell(int x, int y)
-    {
-        return x >= 0 && y >= 0 && x < width && y < height;
-    }
+    public bool IsValidCell(int x, int y) => x >= 0 && y >= 0 && x < width && y < height;
 
 }

@@ -20,20 +20,11 @@ public class StatsTracker : MonoBehaviour
 
     private int totalCarbon = 0;
 
-    void Awake()
-    {
-        Instance = this;
-    }
+    void Awake() => Instance = this;
 
-    public void IncreaseCarbon(int amount)
-    {
-        totalCarbon += amount;
-    }
+    public void IncreaseCarbon(int amount) => totalCarbon += amount;
 
-    public void ReduceCarbon(int amount)
-    {
-        totalCarbon = Mathf.Max(0, totalCarbon - amount);
-    }
+    public void ReduceCarbon(int amount) => totalCarbon = Mathf.Max(0, totalCarbon - amount);
 
     public void RecordTurn(int turn)
     {
@@ -51,9 +42,10 @@ public class StatsTracker : MonoBehaviour
     void UpdateGraph(LineRenderer line, List<int> data)
     {
 
-        
-        line.positionCount = data.Count;
-        for (int i = 0; i < data.Count; i++)
+
+        int counts = data.Count;
+        line.positionCount = counts;
+        for (int i = 0; i < counts; i++)
         {
 
             line.SetPosition(i, new Vector3(i * 0.2f, data[i] * 0.1f, 0));

@@ -20,10 +20,7 @@ public class ChallengeMechanics : MonoBehaviour
     private int biodiversityScore = 100;
     private bool disasterActive = false;
 
-    void Start()
-    {
-        UpdateUI();
-    }
+    void Start() => UpdateUI();
 
     void Update()
     {
@@ -90,9 +87,5 @@ public class ChallengeMechanics : MonoBehaviour
         if (biodiversityText != null) biodiversityText.text = "Biodiversity: " + biodiversityScore;
     }
 
-    void EndSimulation()
-    {
-        Debug.Log("Simulation ended. Final Biodiversity Score: " + biodiversityScore);
-        // Add win/loss condition here
-    }
+    void EndSimulation() => Debug.Log("Simulation ended. Final Biodiversity Score: " + biodiversityScore);// Add win/loss condition here
 }

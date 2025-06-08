@@ -18,11 +18,13 @@ public class SimulationManager : MonoBehaviour
     private bool isSimulating = false;
 
     private List<Entity> entities = new List<Entity>();
+    internal object treeCounts;
+    internal object animalCounts;
 
-    private void Awake()
-    {
-        Instance = this;
-    }
+    public object factoryCounts { get; internal set; }
+    public object factoryCount { get; internal set; }
+
+    private void Awake() => Instance = this;
 
     void Start()
     {

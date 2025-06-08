@@ -6,10 +6,7 @@ public class Factory : Entity
     public float animalDeathRadius = 10f;
     public float treeDeathRadius = 20f;
 
-    private void Start()
-    {
-        size = 4;
-    }
+    private void Start() => size = 4;
 
     public override void OnTurnPassed()
     {
