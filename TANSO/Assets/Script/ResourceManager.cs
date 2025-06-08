@@ -57,7 +57,7 @@ public class ResourceManager : MonoBehaviour
     {
         energy -= factoryEnergyCost;
         carbonData.Add(factoryEnergyCost);
-        print(carbonData);
+        //print(carbonData);
     }
 
     public void GainEnergy(int amount)
