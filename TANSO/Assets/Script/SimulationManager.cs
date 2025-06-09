@@ -117,7 +117,7 @@ public class SimulationManager : MonoBehaviour
 
     void TrySpawnFactoryRandomly()
     {
-        if (Random.value < 0.4f) // 20% È®·ü
+        if (Random.value < 0.2f) // 20% È®·ü
         {
             TryPlaceEntity(factoryPrefab, 4);
             ResourceManager.Instance.factoryAmount++;

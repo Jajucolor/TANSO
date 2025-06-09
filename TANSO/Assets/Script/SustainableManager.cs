@@ -7,10 +7,20 @@ public class SustainableManager : MonoBehaviour
     public static SustainableManager Instance;
     public void InvestInRenewable(string type)
     {
-        int cost = 20;
-        if (ResourceManager.Instance.carbonCredits >= cost)
+
+        if (type == "solar" && ResourceManager.Instance.carbonCredits >= ResourceManager.Instance.solarPowerPlantCost)
         {
-            ResourceManager.Instance.SpendCarbonCredits(cost);
+            ResourceManager.Instance.SpendCarbonCredits(ResourceManager.Instance.solarPowerPlantCost);
+            ResourceManager.Instance.UseRenewableEnergy(type);
+        }
+        else if (type == "hydro" && ResourceManager.Instance.carbonCredits >= ResourceManager.Instance.hydroPowerPlantCost)
+        {
+            ResourceManager.Instance.SpendCarbonCredits(ResourceManager.Instance.hydroPowerPlantCost);
+            ResourceManager.Instance.UseRenewableEnergy(type);
+        }
+        else if (type == "wind" && ResourceManager.Instance.carbonCredits >= ResourceManager.Instance.windPowerPlantCost)
+        {
+            ResourceManager.Instance.SpendCarbonCredits(ResourceManager.Instance.windPowerPlantCost);
             ResourceManager.Instance.UseRenewableEnergy(type);
         }
     }

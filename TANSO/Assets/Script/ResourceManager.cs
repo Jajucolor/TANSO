@@ -21,9 +21,13 @@ public class ResourceManager : MonoBehaviour
     public List<int> energyData = new List<int>();
     public List<int> carbonData = new List<int>();
 
-    public int solarPowerGain = 2;
-    public int windPowerGain = 4;
-    public int hydroPowerGain = 9;
+    public int solarPowerGain = 20;
+    public int windPowerGain = 40;
+    public int hydroPowerGain = 90;
+
+    public int solarPowerPlantCost = 13;
+    public int windPowerPlantCost = 30;
+    public int hydroPowerPlantCost = 100;
 
     void Awake()
     {

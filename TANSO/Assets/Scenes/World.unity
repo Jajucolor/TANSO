@@ -1745,19 +1745,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e6a1eceb08cc8444a73891769b1e587, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  carbonCredits: 1000000
+  carbonCredits: 2000
   energy: 100000
   biodiversity: 1
-  treePlantCost: 10
-  treeMaintainReward: 2
-  factoryEnergyCost: 5
+  treePlantCost: 5
+  treeMaintainReward: 10
+  factoryEnergyCost: 1000
   treeAmount: 0
   factoryAmount: 0
   energyData: 
   carbonData: 
-  solarPowerGain: 3
-  windPowerGain: 2
-  hydroPowerGain: 4
+  solarPowerGain: 20
+  windPowerGain: 40
+  hydroPowerGain: 90
+  solarPowerPlantCost: 13
+  windPowerPlantCost: 30
+  hydroPowerPlantCost: 100
 --- !u!114 &980312203
 MonoBehaviour:
   m_ObjectHideFlags: 0
